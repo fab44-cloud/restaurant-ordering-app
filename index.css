@@ -1,12 +1,42 @@
 body {
     margin: 0;
+    font-family: "Smythe", system-ui;
+    font-weight: 400;
+    color: #000000;
 } 
 
 .header-background {
     background-image: url('./images/burger.jpg');
     background-size: cover;
     background-position: center;
-    height: 400px;
+    height: 300px;
     width: 100%;
     background-repeat: no-repeat;
+}
+
+h1 {
+    font-size: 2.4rem;
+}
+
+.header-paragraph {
+    font-size: 2rem;
+}
+
+h1, .header-paragraph {
+    color: #FFFFFF;
+}
+
+.main-heading {
+    color: #000000;
+}
+
+.pizza-icon {
+    font-size: 80px;
+}
+
+.ellipse {
+    width: 50px;
+    height: 50px;
+    border: 1.5px solid #DEDEDE;
+    border-radius: 50%;
 }
