@@ -26,12 +26,27 @@ h1, .header-paragraph {
     color: #FFFFFF;
 }
 
+.pizza-section {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.pizza-icon {
+    font-size: 5rem;
+}
+
+.pizza-description {
+    display: flex;
+    flex-direction: column;
+}
+
 .main-heading {
     color: #000000;
 }
 
-.pizza-icon {
-    font-size: 80px;
+.main-paragraph {
+    margin: 0;
 }
 
 .ellipse {
@@ -39,4 +54,13 @@ h1, .header-paragraph {
     height: 50px;
     border: 1.5px solid #DEDEDE;
     border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+hr {
+    width: 80%;
+    margin: 0 auto;
 }
