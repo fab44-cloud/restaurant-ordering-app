@@ -33,7 +33,7 @@ h1, .header-paragraph {
     gap: 1rem;
 }
 
-.food-icon {
+.food-emoji {
     font-size: 5rem;
 }
 
@@ -46,7 +46,7 @@ h1, .header-paragraph {
     color: #000000;
 }
 
-.main-paragraph {
+.ingredients {
     margin: 0;
 }
 
