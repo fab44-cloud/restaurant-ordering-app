@@ -26,17 +26,18 @@ h1, .header-paragraph {
     color: #FFFFFF;
 }
 
-.pizza-section {
+.main-section {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    gap: 1rem;
 }
 
-.pizza-icon {
+.food-icon {
     font-size: 5rem;
 }
 
-.pizza-description {
+.food-description {
     display: flex;
     flex-direction: column;
 }
@@ -60,7 +61,12 @@ h1, .header-paragraph {
     cursor: pointer;
 }
 
+.fa-plus {
+    font-size: 2rem;
+    font-weight: 200;
+}
+
 hr {
-    width: 80%;
+    width: 50%;
     margin: 0 auto;
 }
