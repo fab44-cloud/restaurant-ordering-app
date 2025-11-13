@@ -1,10 +1,12 @@
 import menuArray from "./data.js"
 
-const menuContainer = document.querySelector('.menu-container')
+const menuSection = document.querySelector('.menu-section')
+const orderSection = document.querySelector('.order-section')
+let orderArray = []
 
 const menuString = menuArray.map(food => {
     return `
-     <div class="food-section">
+     <div class="menu-container">
         <span class="food-emoji">${food.emoji}</span>
         <div class="food-description">
           <h2 class="main-heading">${food.name}</h2>
@@ -19,16 +21,39 @@ const menuString = menuArray.map(food => {
     `
 }).join('')
 
-menuContainer.innerHTML = menuString;
+menuSection.innerHTML = menuString;
 
-// --- Accessing the dataset ---
 
-// Use event delegation on the menu container
-menuContainer.addEventListener('click', function(e) {
+// Event listener
+menuSection.addEventListener('click', function(e) {
     const clickedBtn = e.target.closest('.plus-btn')
 
     if (clickedBtn) {
-        const foodId = clickedBtn.dataset.id
+        const foodId = parseInt(clickedBtn.dataset.id)
         console.log(`Button with data-id: ${foodId} was clicked`)
+        handleAddItemToCart(foodId)
     }
 })
+
+function handleAddItemToCart(itemId) {
+    const selectedItem = menuArray.find(item => item.id === itemId)
+    orderArray.push(selectedItem)
+    renderOrderSummary()
+}
+
+function renderOrderSummary() {
+    let orderHtml = ''
+    if (orderArray.length > 0) {
+
+        // Generate Html for individual items
+        orderArray.forEach(orderItem => {
+            orderHtml += `
+                <h2>Your order</h2>
+                <div>
+                    <p>${orderItem.name}</p>
+                </div>
+            `
+        })
+    }
+    orderSection.innerHTML = orderHtml
+}
