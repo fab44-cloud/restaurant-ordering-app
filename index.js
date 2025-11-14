@@ -23,24 +23,42 @@ const menuString = menuArray.map(food => {
 
 menuSection.innerHTML = menuString;
 
-
-// Event listener
-menuSection.addEventListener('click', function(e) {
-    const clickedBtn = e.target.closest('.plus-btn')
-
-    if (clickedBtn) {
-        const foodId = parseInt(clickedBtn.dataset.id)
-        console.log(`Button with data-id: ${foodId} was clicked`)
-        handleAddItemToCart(foodId)
-    }
-})
-
 // Functions
 function handleAddItemToCart(itemId) {
     const selectedItem = menuArray.find(item => item.id === itemId)
     orderArray.push(selectedItem)
     renderOrderSummary()
 }
+
+function removeItemFromCart(itemId) {
+    const itemToRemoveIndex = orderArray.findIndex(item => item.id === itemId)
+
+    if (itemToRemoveIndex > -1) {
+        orderArray.splice(itemToRemoveIndex, 1)
+        console.log(itemToRemoveIndex)
+        renderOrderSummary()
+    }
+}
+
+// Event listeners
+menuSection.addEventListener('click', function(e) {
+    const plusBtn = e.target.closest('.plus-btn')
+
+    if (plusBtn) {
+        const foodId = parseInt(plusBtn.dataset.id)
+        console.log(`Button with data-id: ${foodId} was clicked`)
+        handleAddItemToCart(foodId)
+    }
+})
+
+orderSection.addEventListener('click', function(e) {
+    const removeBtn = e.target.closest('.remove-btn')
+    if (removeBtn) {
+        const foodId = parseInt(removeBtn.dataset.id)
+        removeItemFromCart(foodId)
+    }
+})
+
 
 function renderOrderSummary() {
     let orderItemsHtml = ''
@@ -52,7 +70,7 @@ function renderOrderSummary() {
             orderItemsHtml += `
                 <div class="order-item-row">
                     <p>${orderItem.name}</p>
-                    <button>Remove</button>
+                    <button class="remove-btn" data-id='${orderItem.id}'>Remove</button>
                     <p>$${orderItem.price}</p>
                 </div>
             `
