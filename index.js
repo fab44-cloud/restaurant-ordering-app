@@ -102,43 +102,16 @@ function renderOrderSummary() {
 
     const totalDiv = document.createElement("div");
     const horizontalLine = document.createElement("hr");
+    const orderBtn = document.createElement("button");
+
+    totalDiv.textContent = `Total price: $${total.toFixed(2)}`
+
+    orderBtn.classList.add("order-btn");
+    orderBtn.textContent = "Complete order";
 
     orderSection.appendChild(horizontalLine);
-
-    totalDiv.textContent = `$${total.toFixed(2)}`
-
     orderSection.appendChild(totalDiv);
+    orderSection.appendChild(orderBtn);
 }
 
-// function renderOrderSummary() {
-//     let orderItemsHtml = ''
-//     let total = 0
 
-//     if (orderArray.length > 0) {
-//         orderArray.forEach(orderItem => {
-//             total += orderItem.price
-//             orderItemsHtml += `
-//                 <div class="order-item-row">
-//                     <p>${orderItem.name}</p>
-//                     <button class="remove-btn" data-id='${orderItem.id}'>Remove</button>
-//                     <p>$${orderItem.price}</p>
-//                 </div>
-//             `
-//         })
-
-//         const fullOrderHtml = `
-//             <h2>Your order</h2>
-//             <div>
-//                 ${orderItemsHtml}
-//             </div>
-//             <hr />
-//             <p>Total Price: $${total}</p>
-//             <button>Complete order</button>
-//         `
-
-//         orderSection.innerHTML = fullOrderHtml
-//     } else {
-//         orderSection.innerHTML = '';
-//         orderSection.style.display = none;
-//     }
-// }
