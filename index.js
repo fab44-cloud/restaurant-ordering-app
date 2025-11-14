@@ -31,13 +31,8 @@ function handleAddItemToCart(itemId) {
 }
 
 function removeItemFromCart(itemId) {
-    const itemToRemoveIndex = orderArray.findIndex(item => item.id === itemId)
-
-    if (itemToRemoveIndex > -1) {
-        orderArray.splice(itemToRemoveIndex, 1)
-        console.log(itemToRemoveIndex)
-        renderOrderSummary()
-    }
+    orderArray = orderArray.filter(item => item.id !== itemId)
+    renderOrderSummary()
 }
 
 // Event listeners
@@ -62,7 +57,6 @@ orderSection.addEventListener('click', function(e) {
 
 function renderOrderSummary() {
     orderSection.innerHTML = '';
-    let total = 0;
 
     if (orderArray.length === 0) {
         orderSection.style.display = 'none';
@@ -71,34 +65,40 @@ function renderOrderSummary() {
         orderSection.style.display = 'block';
     }
 
-    const h3 = document.createElement("h3");
-    h3.textContent = "Your order";
+    const orderTitleEl = document.createElement("h3");
+    const orderItemsContainer = document.createElement("div");
 
-    orderSection.append(h3);
+    orderItemsContainer.classList.add("order-items-list");
+
+    orderTitleEl.textContent = "Your order";
+
+    orderSection.appendChild(orderTitleEl);
+    orderSection.appendChild(orderItemsContainer);
 
     orderArray.forEach(orderItem => {
-        total += orderItem.price;
 
-        const div = document.createElement("div");
-        const p = document.createElement("p");
-        const button = document.createElement("button");
-        const orderPrice = document.createElement("p");
+        const itemRowEl = document.createElement("div");
+        const itemNameEl = document.createElement("p");
+        const removeBtnEl = document.createElement("button");
+        const itemPriceEl = document.createElement("p");
 
-        div.classList.add("order-item-row");
+        itemRowEl.classList.add("order-item-row");
 
-        p.textContent = `${orderItem.name}`;
+        itemNameEl.textContent = `${orderItem.name}`;
 
-        button.classList.add("remove-btn");
-        button.setAttribute("data-id", `${orderItem.id}`)
-        button.textContent = "Remove";
+        removeBtnEl.classList.add("remove-btn");
+        removeBtnEl.setAttribute("data-id", `${orderItem.id}`)
+        removeBtnEl.textContent = "Remove";
 
-        orderPrice.textContent = `$${orderItem.price}`
+        itemPriceEl.textContent = `$${orderItem.price.toFixed(2)}`
 
-        orderSection.appendChild(div);
-        div.appendChild(p);
-        div.appendChild(button);
-        div.appendChild(orderPrice);
+        orderItemsContainer.appendChild(itemRowEl);
+        itemRowEl.appendChild(itemNameEl);
+        itemRowEl.appendChild(removeBtnEl);
+        itemRowEl.appendChild(itemPriceEl);
     })
+
+    const total = orderArray.reduce((sum, currentValue) => sum + currentValue.price, 0);
 
     const totalDiv = document.createElement("div");
     const horizontalLine = document.createElement("hr");
