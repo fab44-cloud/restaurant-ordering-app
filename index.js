@@ -35,6 +35,7 @@ menuSection.addEventListener('click', function(e) {
     }
 })
 
+// Functions
 function handleAddItemToCart(itemId) {
     const selectedItem = menuArray.find(item => item.id === itemId)
     orderArray.push(selectedItem)
@@ -42,18 +43,31 @@ function handleAddItemToCart(itemId) {
 }
 
 function renderOrderSummary() {
-    let orderHtml = ''
-    if (orderArray.length > 0) {
+    let orderItemsHtml = ''
+    let total = 0
 
-        // Generate Html for individual items
+    if (orderArray.length > 0) {
         orderArray.forEach(orderItem => {
-            orderHtml += `
-                <h2>Your order</h2>
-                <div>
+            total += orderItem.price
+            orderItemsHtml += `
+                <div class="order-item-row">
                     <p>${orderItem.name}</p>
+                    <button>Remove</button>
+                    <p>$${orderItem.price}</p>
                 </div>
             `
         })
+
+        const fullOrderHtml = `
+            <h2>Your order</h2>
+            <div>
+                ${orderItemsHtml}
+            </div>
+            <hr />
+            <p>Total Price: $${total}</p>
+            <button>Complete order</button>
+        `
+
+        orderSection.innerHTML = fullOrderHtml
     }
-    orderSection.innerHTML = orderHtml
 }
