@@ -1,3 +1,7 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: "Smythe", system-ui;
@@ -26,11 +30,16 @@ h1, .header-paragraph {
     color: #FFFFFF;
 }
 
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
 .menu-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    gap: 1rem;
 }
 
 .food-emoji {
@@ -68,7 +77,7 @@ h1, .header-paragraph {
 }
 
 hr {
-    width: 500px;
+    width: 100%;
     margin: 0 auto;
 }
 
@@ -83,6 +92,7 @@ h3 {
 
 .order-item-row {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    width: 100%;
 }
