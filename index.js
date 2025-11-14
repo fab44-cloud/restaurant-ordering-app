@@ -61,31 +61,84 @@ orderSection.addEventListener('click', function(e) {
 
 
 function renderOrderSummary() {
-    let orderItemsHtml = ''
-    let total = 0
+    orderSection.innerHTML = '';
+    let total = 0;
 
-    if (orderArray.length > 0) {
-        orderArray.forEach(orderItem => {
-            total += orderItem.price
-            orderItemsHtml += `
-                <div class="order-item-row">
-                    <p>${orderItem.name}</p>
-                    <button class="remove-btn" data-id='${orderItem.id}'>Remove</button>
-                    <p>$${orderItem.price}</p>
-                </div>
-            `
-        })
-
-        const fullOrderHtml = `
-            <h2>Your order</h2>
-            <div>
-                ${orderItemsHtml}
-            </div>
-            <hr />
-            <p>Total Price: $${total}</p>
-            <button>Complete order</button>
-        `
-
-        orderSection.innerHTML = fullOrderHtml
+    if (orderArray.length === 0) {
+        orderSection.style.display = 'none';
+        return;
+    } else {
+        orderSection.style.display = 'block';
     }
+
+    const h3 = document.createElement("h3");
+    h3.textContent = "Your order";
+
+    orderSection.append(h3);
+
+    orderArray.forEach(orderItem => {
+        total += orderItem.price;
+
+        const div = document.createElement("div");
+        const p = document.createElement("p");
+        const button = document.createElement("button");
+        const orderPrice = document.createElement("p");
+
+        div.classList.add("order-item-row");
+
+        p.textContent = `${orderItem.name}`;
+
+        button.classList.add("remove-btn");
+        button.setAttribute("data-id", `${orderItem.id}`)
+        button.textContent = "Remove";
+
+        orderPrice.textContent = `$${orderItem.price}`
+
+        orderSection.appendChild(div);
+        div.appendChild(p);
+        div.appendChild(button);
+        div.appendChild(orderPrice);
+    })
+
+    const totalDiv = document.createElement("div");
+    const horizontalLine = document.createElement("hr");
+
+    orderSection.appendChild(horizontalLine);
+
+    totalDiv.textContent = `$${total.toFixed(2)}`
+
+    orderSection.appendChild(totalDiv);
 }
+
+// function renderOrderSummary() {
+//     let orderItemsHtml = ''
+//     let total = 0
+
+//     if (orderArray.length > 0) {
+//         orderArray.forEach(orderItem => {
+//             total += orderItem.price
+//             orderItemsHtml += `
+//                 <div class="order-item-row">
+//                     <p>${orderItem.name}</p>
+//                     <button class="remove-btn" data-id='${orderItem.id}'>Remove</button>
+//                     <p>$${orderItem.price}</p>
+//                 </div>
+//             `
+//         })
+
+//         const fullOrderHtml = `
+//             <h2>Your order</h2>
+//             <div>
+//                 ${orderItemsHtml}
+//             </div>
+//             <hr />
+//             <p>Total Price: $${total}</p>
+//             <button>Complete order</button>
+//         `
+
+//         orderSection.innerHTML = fullOrderHtml
+//     } else {
+//         orderSection.innerHTML = '';
+//         orderSection.style.display = none;
+//     }
+// }
