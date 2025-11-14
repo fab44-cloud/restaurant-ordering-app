@@ -1,8 +1,8 @@
-import menuArray from "./data.js"
+import menuArray from "./data.js";
 
-const menuSection = document.querySelector('.menu-section')
-const orderSection = document.querySelector('.order-section')
-let orderArray = []
+const menuSection = document.querySelector('.menu-section');
+const orderSection = document.querySelector('.order-section');
+let orderArray = [];
 
 const menuString = menuArray.map(food => {
     return `
@@ -19,41 +19,39 @@ const menuString = menuArray.map(food => {
       </div>
       <hr />
     `
-}).join('')
+}).join('');
 
 menuSection.innerHTML = menuString;
 
 // Functions
 function handleAddItemToCart(itemId) {
-    const selectedItem = menuArray.find(item => item.id === itemId)
-    orderArray.push(selectedItem)
-    renderOrderSummary()
+    const selectedItem = menuArray.find(item => item.id === itemId);
+    orderArray.push(selectedItem);
+    renderOrderSummary();
 }
 
 function removeItemFromCart(itemId) {
-    orderArray = orderArray.filter(item => item.id !== itemId)
-    renderOrderSummary()
+    orderArray = orderArray.filter(item => item.id !== itemId);
+    renderOrderSummary();
 }
 
 // Event listeners
 menuSection.addEventListener('click', function(e) {
-    const plusBtn = e.target.closest('.plus-btn')
+    const plusBtn = e.target.closest('.plus-btn');
 
     if (plusBtn) {
-        const foodId = parseInt(plusBtn.dataset.id)
-        console.log(`Button with data-id: ${foodId} was clicked`)
-        handleAddItemToCart(foodId)
+        const foodId = parseInt(plusBtn.dataset.id);
+        handleAddItemToCart(foodId);
     }
 })
 
 orderSection.addEventListener('click', function(e) {
-    const removeBtn = e.target.closest('.remove-btn')
+    const removeBtn = e.target.closest('.remove-btn');
     if (removeBtn) {
-        const foodId = parseInt(removeBtn.dataset.id)
-        removeItemFromCart(foodId)
+        const foodId = parseInt(removeBtn.dataset.id);
+        removeItemFromCart(foodId);
     }
 })
-
 
 function renderOrderSummary() {
     orderSection.innerHTML = '';
@@ -87,10 +85,10 @@ function renderOrderSummary() {
         itemNameEl.textContent = `${orderItem.name}`;
 
         removeBtnEl.classList.add("remove-btn");
-        removeBtnEl.setAttribute("data-id", `${orderItem.id}`)
+        removeBtnEl.setAttribute("data-id", `${orderItem.id}`);
         removeBtnEl.textContent = "Remove";
 
-        itemPriceEl.textContent = `$${orderItem.price.toFixed(2)}`
+        itemPriceEl.textContent = `$${orderItem.price.toFixed(2)}`;
 
         orderItemsContainer.appendChild(itemRowEl);
         itemRowEl.appendChild(itemNameEl);
