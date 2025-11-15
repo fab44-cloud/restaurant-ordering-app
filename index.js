@@ -98,17 +98,25 @@ function renderOrderSummary() {
 
     const total = orderArray.reduce((sum, currentValue) => sum + currentValue.price, 0);
 
-    const totalDiv = document.createElement("div");
+    const totalPriceDiv = document.createElement("div");
+    const totalLabelSpan = document.createElement("span");
+    const totalPriceSpan = document.createElement("span");
     const horizontalLine = document.createElement("hr");
     const orderBtn = document.createElement("button");
 
-    totalDiv.textContent = `Total price: $${total.toFixed(2)}`
+    totalPriceDiv.classList.add("total-price-row");
+
+    totalLabelSpan.textContent = "Total price:"
+    totalPriceSpan.textContent = `$${total.toFixed(2)}`
 
     orderBtn.classList.add("order-btn");
     orderBtn.textContent = "Complete order";
 
+    totalPriceDiv.appendChild(totalLabelSpan);
+    totalPriceDiv.appendChild(totalPriceSpan);
+    
     orderSection.appendChild(horizontalLine);
-    orderSection.appendChild(totalDiv);
+    orderSection.appendChild(totalPriceDiv);
     orderSection.appendChild(orderBtn);
 }
 
