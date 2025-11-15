@@ -83,6 +83,7 @@ hr {
 
 h3 {
     text-align: center;
+    padding: 1rem 0 2rem 0;
 }
 
 .order-items-list {
@@ -95,4 +96,29 @@ h3 {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+}
+
+.total-price-row {
+    padding: 1rem 0 1.5rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.order-btn {
+    background-color: #16DB99;
+    border: none;
+    border-radius: 3px;
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
+    color: #FFFFFF;
+    font-weight: 700;
+    width: 100%;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+.order-btn:hover {
+    background-color: #16a085;
 }
