@@ -24,14 +24,24 @@ const menuString = menuArray.map(food => {
 menuSection.innerHTML = menuString;
 
 // Functions
-function handleAddItemToCart(itemId) {
-    const selectedItem = menuArray.find(item => item.id === itemId);
-    orderArray.push(selectedItem);
-    renderOrderSummary();
+function generateUUID() {
+    return crypto.randomUUID();
 }
 
-function removeItemFromCart(itemId) {
-    orderArray = orderArray.filter(item => item.id !== itemId);
+function handleAddItemToCart(itemId) {
+    const selectedItem = menuArray.find(item => item.id === itemId);
+    if (selectedItem) {
+        const newItemInCart = {
+            ...selectedItem,
+            instanceId: generateUUID()
+        };
+        orderArray.push(newItemInCart);
+        renderOrderSummary();
+    }
+}
+
+function removeItemFromCart(instanceId) {
+    orderArray = orderArray.filter(item => item.instanceId !== instanceId);
     renderOrderSummary();
 }
 
@@ -48,8 +58,8 @@ menuSection.addEventListener('click', function(e) {
 orderSection.addEventListener('click', function(e) {
     const removeBtn = e.target.closest('.remove-btn');
     if (removeBtn) {
-        const foodId = parseInt(removeBtn.dataset.id);
-        removeItemFromCart(foodId);
+        const foodInstanceId = removeBtn.dataset.id;
+        removeItemFromCart(foodInstanceId);
     }
 })
 
@@ -85,7 +95,7 @@ function renderOrderSummary() {
         itemNameEl.textContent = `${orderItem.name}`;
 
         removeBtnEl.classList.add("remove-btn");
-        removeBtnEl.setAttribute("data-id", `${orderItem.id}`);
+        removeBtnEl.setAttribute("data-id", `${orderItem.instanceId}`);
         removeBtnEl.textContent = "Remove";
 
         itemPriceEl.textContent = `$${orderItem.price.toFixed(2)}`;
@@ -114,7 +124,7 @@ function renderOrderSummary() {
 
     totalPriceDiv.appendChild(totalLabelSpan);
     totalPriceDiv.appendChild(totalPriceSpan);
-    
+
     orderSection.appendChild(horizontalLine);
     orderSection.appendChild(totalPriceDiv);
     orderSection.appendChild(orderBtn);
