@@ -128,6 +128,12 @@ function renderOrderSummary() {
     orderSection.appendChild(horizontalLine);
     orderSection.appendChild(totalPriceDiv);
     orderSection.appendChild(orderBtn);
+
+    const paymentModal = document.querySelector(".payment-modal");
+
+    orderBtn.addEventListener("click", () => {
+        paymentModal.showModal();
+    });
 }
 
-
+const payButton = document.querySelector(".pay-btn");
