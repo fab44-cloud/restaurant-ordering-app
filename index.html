@@ -36,6 +36,50 @@
           <!-- Order goes here! -->
         </section>
       </div>
+
+      <dialog class="payment-modal">
+        <form>
+          <fieldset>
+            <legend>Enter card details</legend>
+            <div class="form-field">
+              <label for="name"></label>
+              <input
+                type="text"
+                name="name"
+                id="name"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="card-number"></label>
+              <input
+                type="number"
+                name="card-number"
+                id="card-number"
+                placeholder="Enter card number"
+                required
+              />
+            </div>
+
+            <div class="form-field">
+              <label for="cvv"></label>
+              <input
+                type="number"
+                name="cvv"
+                id="cvv"
+                placeholder="Enter CVV"
+                required
+              />
+            </div>
+          </fieldset>
+
+          <div>
+            <button class="pay-btn" type="submit">Pay</button>
+          </div>
+        </form>
+      </dialog>
     </main>
 
     <script src="index.js" type="module"></script>
