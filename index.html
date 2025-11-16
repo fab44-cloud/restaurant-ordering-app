@@ -55,10 +55,14 @@
             <div class="form-field">
               <label for="card-number"></label>
               <input
-                type="number"
+                type="tel"
+                inputmode="numeric"
+                pattern="[0-9\s]{13,19}"
+                maxlength="19"
                 name="card-number"
                 id="card-number"
-                placeholder="Enter card number"
+                placeholder="xxxx xxxx xxxx xxxx"
+                title="Enter 13 to 19 digits (spaces optional)"
                 required
               />
             </div>
@@ -66,11 +70,15 @@
             <div class="form-field">
               <label for="cvv"></label>
               <input
-                type="number"
+                type="tel"
                 name="cvv"
                 id="cvv"
-                placeholder="Enter CVV"
+                inputmode="numeric"
+                pattern="[0-9]{3,4}"
+                maxlength="4"
+                placeholder="123"
                 required
+                autocomplete="cc-csc"
               />
             </div>
           </fieldset>
