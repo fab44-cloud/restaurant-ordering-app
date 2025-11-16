@@ -130,10 +130,15 @@ function renderOrderSummary() {
     orderSection.appendChild(orderBtn);
 
     const paymentModal = document.querySelector(".payment-modal");
+    const cancelBtn = document.querySelector(".cancel-btn");
 
     orderBtn.addEventListener("click", () => {
         paymentModal.showModal();
     });
+
+    cancelBtn.addEventListener("click", () => {
+        paymentModal.close();
+    })
 }
 
-const payButton = document.querySelector(".pay-btn");
+const payBtn = document.querySelector(".pay-btn");
