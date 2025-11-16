@@ -107,18 +107,39 @@ h3 {
 }
 
 .order-btn {
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.pay-btn {
+    margin-top: 0.5rem;
+}
+
+.order-btn, .pay-btn {
     background-color: #16DB99;
     border: none;
     border-radius: 3px;
-    padding: 1rem 2rem;
-    margin-bottom: 1rem;
     color: #FFFFFF;
     font-weight: 700;
-    width: 100%;
     transition: background-color 0.3s ease;
     cursor: pointer;
+    width: 100%;
+    padding: 0.5rem 1rem;
 }
 
-.order-btn:hover {
+.order-btn:hover, .pay-btn:hover {
     background-color: #16a085;
+}
+
+form {
+    padding: 1rem;
+}
+
+.form-field {
+    margin: 1rem 0;
+}
+
+input {
+    padding: 0.5rem 1rem;
 }
