@@ -113,7 +113,7 @@ h3 {
 }
 
 .pay-btn {
-    margin-top: 0.5rem;
+    margin: 1rem 0;
 }
 
 .order-btn, .pay-btn {
@@ -132,8 +132,8 @@ h3 {
     background-color: #16a085;
 }
 
-form {
-    padding: 1rem;
+fieldset {
+    padding: 1.5rem;
 }
 
 .form-field {
