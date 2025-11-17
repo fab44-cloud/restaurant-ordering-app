@@ -57,9 +57,15 @@ menuSection.addEventListener('click', function(e) {
 
 orderSection.addEventListener('click', function(e) {
     const removeBtn = e.target.closest('.remove-btn');
+    const orderBtn = e.target.closest('.order-btn');
+
     if (removeBtn) {
         const foodInstanceId = removeBtn.dataset.id;
         removeItemFromCart(foodInstanceId);
+    }
+
+    if (orderBtn) {
+        paymentModal.showModal();
     }
 })
 
@@ -128,20 +134,24 @@ function renderOrderSummary() {
     orderSection.appendChild(horizontalLine);
     orderSection.appendChild(totalPriceDiv);
     orderSection.appendChild(orderBtn);
-
 }
 
 const paymentModal = document.querySelector(".payment-modal");
 const cancelBtn = document.querySelector(".cancel-btn");
 const payBtn = document.querySelector(".pay-btn");
 const nameInput = document.querySelector(".name");
+const paymentForm = document.querySelector(".payment-form");
 
 cancelBtn.addEventListener("click", () => {
     paymentModal.close();
 })
 
-payBtn.addEventListener("click", () => {
-    handlePaymentSuccess();
+payBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    if (paymentForm.reportValidity()) {
+        handlePaymentSuccess();
+    }
 })
 
 function handlePaymentSuccess() {
@@ -155,4 +165,6 @@ function handlePaymentSuccess() {
             <h3>Thanks ${nameInput.value}! Your order is on its way!</h3>
         </div>
     `
+
+    paymentForm.reset();
 }
