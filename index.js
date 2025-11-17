@@ -117,13 +117,15 @@ function renderOrderSummary() {
     const totalPriceDiv = document.createElement("div");
     const totalLabelSpan = document.createElement("span");
     const totalPriceSpan = document.createElement("span");
-    const horizontalLine = document.createElement("hr");
+    const totalPriceLine = document.createElement("hr");
     const orderBtn = document.createElement("button");
 
     totalPriceDiv.classList.add("total-price-row");
 
-    totalLabelSpan.textContent = "Total price:"
-    totalPriceSpan.textContent = `$${total.toFixed(2)}`
+    totalLabelSpan.textContent = "Total price:";
+    totalPriceSpan.textContent = `$${total.toFixed(2)}`;
+
+    totalPriceLine.classList.add("total-price-line");
 
     orderBtn.classList.add("order-btn");
     orderBtn.textContent = "Complete order";
@@ -131,7 +133,7 @@ function renderOrderSummary() {
     totalPriceDiv.appendChild(totalLabelSpan);
     totalPriceDiv.appendChild(totalPriceSpan);
 
-    orderSection.appendChild(horizontalLine);
+    orderSection.appendChild(totalPriceLine);
     orderSection.appendChild(totalPriceDiv);
     orderSection.appendChild(orderBtn);
 }

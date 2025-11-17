@@ -78,7 +78,11 @@ h1, .header-paragraph {
 
 hr {
     width: 100%;
-    margin: 0 auto;
+    margin: 1rem auto;
+}
+
+.total-price-line {
+    border: 1px solid #393333;
 }
 
 h3 {
@@ -106,17 +110,8 @@ h3 {
     width: 100%;
 }
 
-.order-btn {
-    padding: 1rem 2rem;
-    margin-bottom: 1rem;
-    width: 100%;
-}
-
+.order-btn,
 .pay-btn {
-    margin: 0 0 1.2rem 0;
-}
-
-.order-btn, .pay-btn {
     background-color: #16DB99;
     border: none;
     border-radius: 3px;
@@ -125,7 +120,16 @@ h3 {
     transition: background-color 0.3s ease;
     cursor: pointer;
     width: 100%;
-    padding: 0.5rem 1rem;
+    padding: 0.8rem 1rem;
+}
+
+.order-btn {
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
+}
+
+.pay-btn {
+    margin: 0 0 1.2rem 0;
 }
 
 .order-btn:hover, .pay-btn:hover {
