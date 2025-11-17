@@ -129,16 +129,30 @@ function renderOrderSummary() {
     orderSection.appendChild(totalPriceDiv);
     orderSection.appendChild(orderBtn);
 
-    const paymentModal = document.querySelector(".payment-modal");
-    const cancelBtn = document.querySelector(".cancel-btn");
-
-    orderBtn.addEventListener("click", () => {
-        paymentModal.showModal();
-    });
-
-    cancelBtn.addEventListener("click", () => {
-        paymentModal.close();
-    })
 }
 
+const paymentModal = document.querySelector(".payment-modal");
+const cancelBtn = document.querySelector(".cancel-btn");
 const payBtn = document.querySelector(".pay-btn");
+const nameInput = document.querySelector(".name");
+
+cancelBtn.addEventListener("click", () => {
+    paymentModal.close();
+})
+
+payBtn.addEventListener("click", () => {
+    handlePaymentSuccess();
+})
+
+function handlePaymentSuccess() {
+    paymentModal.close();
+    orderArray = [];
+    renderOrderSummary();
+
+    orderSection.style.display = 'block';
+    orderSection.innerHTML = `
+        <div class="completion-message">
+            <h3>Thanks ${nameInput.value}! Your order is on its way!</h3>
+        </div>
+    `
+}
